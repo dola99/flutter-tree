@@ -138,6 +138,8 @@ class _TreeNodeState extends State<TreeNode>
                   } else {
                     _isChecked = !_isChecked;
                     widget.onCheck(_isChecked, widget.data);
+                    widget.onTap(widget.data);
+
                     setState(() {});
                   }
                 }
