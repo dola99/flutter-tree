@@ -130,20 +130,12 @@ class _TreeNodeState extends State<TreeNode>
           mouseCursor: widget.contentTappable
               ? SystemMouseCursors.click
               : MouseCursor.defer,
-          onTap: widget.contentTappable
+          onTap: hasData
               ? () {
-                  if (hasData) {
-                    widget.onTap(widget.data);
-                    toggleExpansion();
-                  } else {
-                    _isChecked = !_isChecked;
-                    widget.onCheck(_isChecked, widget.data);
-                    widget.onTap(widget.data);
-
-                    setState(() {});
-                  }
+                  widget.onTap(widget.data);
+                  toggleExpansion();
                 }
-              : () {},
+              : null,
           child: Container(
             margin: const EdgeInsets.only(bottom: 2.0),
             padding: const EdgeInsets.only(right: 12.0),
@@ -196,7 +188,6 @@ class _TreeNodeState extends State<TreeNode>
                                 } else {
                                   _isChecked = !_isChecked;
                                   widget.onCheck(_isChecked, widget.data);
-                                  setState(() {});
                                 }
                               }
                             : () {},
